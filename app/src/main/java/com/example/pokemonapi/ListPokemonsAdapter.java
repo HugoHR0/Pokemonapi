@@ -42,8 +42,10 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         p = dataset.get(position);
         holder.nombrePokemon.setText(p.getName());
-        Glide.with(context).load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+p.getNum()+".png")
+        Glide.with(context)
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+p.getNum()+".png")
                 .centerCrop()
+                .transition(withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ftPokemon);
 
@@ -52,6 +54,12 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    public void adicionaListaPokemon(ArrayList<Pokemon>listaPokemon)
+    {
+        dataset.addAll(listaPokemon);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
