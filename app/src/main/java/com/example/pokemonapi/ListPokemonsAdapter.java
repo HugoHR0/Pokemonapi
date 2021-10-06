@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.pokemonapi.models.Pokemon;
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+//import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import org.w3c.dom.Text;
 
@@ -43,9 +43,10 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
         p = dataset.get(position);
         holder.nombrePokemon.setText(p.getName());
         Glide.with(context)
-                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+p.getNum()+".png")
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"+p.getNum()+".png")
                 .centerCrop()
-                .transition(withCrossFade())
+                //.transition(withCrossFade())
+                .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ftPokemon);
 
@@ -53,7 +54,7 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
 
     @Override
     public int getItemCount() {
-        return 0;
+        return  dataset.size();
     }
 
     public void adicionaListaPokemon(ArrayList<Pokemon>listaPokemon)
@@ -70,7 +71,7 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
         public ViewHolder(View itemView){
             super(itemView);
 
-            ftPokemon = (ImageView) itemView.findViewById(R.id.fotoPokemon);
+           ftPokemon = (ImageView) itemView.findViewById(R.id.imgPokemon);
             nombrePokemon = (TextView) itemView.findViewById(R.id.nombreTextView);
             tarjeta=(CardView) itemView.findViewById(R.id.tarjeta);
 

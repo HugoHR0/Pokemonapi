@@ -8,18 +8,18 @@
     android:id="@+id/tarjeta"
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/purple_200"
     app:cardUseCompatPadding="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
 
 
             <ImageView
-                android:id="@+id/fotoPokemon"
+                android:id="@+id/imgPokemon"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="center_horizontal"

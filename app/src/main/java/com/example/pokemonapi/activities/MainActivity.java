@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(listPokemonsAdapter);
         recyclerView.setHasFixedSize(true);
 
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void obtenerDatos(int offset){
         PokemonService service = retrofit.create(PokemonService.class);
+       // Call<Pokemonrepuestas> pokemonRespuestasCall = service.obtenerListpokemon(20,offset);
         Call<Pokemonrepuestas> pokemonRespuestasCall = service.obtenerListpokemon(20,offset);
-
         pokemonRespuestasCall.enqueue(new Callback<Pokemonrepuestas>() {
             @Override
             public void onResponse(Call<Pokemonrepuestas> call, Response<Pokemonrepuestas> response) {
