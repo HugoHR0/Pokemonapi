@@ -1,6 +1,7 @@
 package com.example.pokemonapi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,22 +15,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.pokemonapi.activities.MainActivity;
+import com.example.pokemonapi.activities.caracteristicasPokemon;
 import com.example.pokemonapi.models.Pokemon;
+import com.example.pokemonapi.utils.Constant;
 //import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapter.ViewHolder> {
+    List<Pokemon> pokemonList;
     private ArrayList<Pokemon> dataset;
     private Context context;
     private Pokemon p;
+    Context ctx;
 
     public ListPokemonsAdapter(Context context){
         this.context=context;
         dataset = new ArrayList<>();
+
     }
+
 
     @NonNull
     @Override
@@ -40,6 +49,7 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         p = dataset.get(position);
         holder.nombrePokemon.setText(p.getName());
         Glide.with(context)
@@ -49,6 +59,19 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ftPokemon);
+        String pokemonId = dataset.get(position).getName();
+        holder.ftPokemon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(ctx, caracteristicasPokemon.class);
+                intent.putExtra(Constant.EXTRA_POKEMON_ID, pokemonId);
+                ctx.startActivity(intent);
+
+
+            }
+        });
 
     }
 
@@ -64,6 +87,7 @@ public class ListPokemonsAdapter extends RecyclerView.Adapter<ListPokemonsAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        public View llayaut;
         private ImageView ftPokemon;
         private TextView nombrePokemon;
         private CardView tarjeta;

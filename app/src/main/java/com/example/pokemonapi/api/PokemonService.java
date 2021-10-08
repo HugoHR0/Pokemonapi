@@ -10,9 +10,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PokemonService {
+
+
     @GET("pokemon")
     Call<Pokemonrepuestas> obtenerListpokemon(@Query("limit")int limit, @Query("offset")int offset);
 
     @GET("pokemon/[id]")
-    Call<PokemonByIdResponse> getPokemonByid(@Path("id")String id);
+    Call<PokemonByIdResponse> getPokemonById(@Path("id")String id);
 }
