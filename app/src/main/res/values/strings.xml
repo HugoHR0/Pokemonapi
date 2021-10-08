@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Pokemonapi</string>
     <string name="texto">Pokemon</string>
+    <string name="description">descripcion</string>
 </resources>
